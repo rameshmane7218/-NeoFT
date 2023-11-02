@@ -43,7 +43,6 @@ export default function ThemeRegistry({
       toggleColorMode: () => {
         setMode((prevMode: PaletteMode) => {
           const mode = prevMode === "light" ? "dark" : "light";
-          setThemeMode(mode);
           return mode;
         });
       },
@@ -51,6 +50,10 @@ export default function ThemeRegistry({
     }),
     [mode]
   );
+
+  React.useEffect(() => {
+    setThemeMode(mode);
+  }, [mode]);
 
   return (
     <NextAppDirEmotionCacheProvider options={{ key: "mui" }}>
