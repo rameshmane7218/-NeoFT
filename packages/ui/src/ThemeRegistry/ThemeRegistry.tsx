@@ -10,7 +10,6 @@ import getDesignTokens from "./theme";
 export const ColorModeContext = React.createContext({
   toggleColorMode: () => {},
   mode: "",
-  theme: {},
 });
 
 export default function ThemeRegistry({
@@ -18,10 +17,22 @@ export default function ThemeRegistry({
 }: {
   children: React.ReactNode;
 }) {
+  const getThemeMode = (): PaletteMode | undefined => {
+    if (typeof window !== "undefined") {
+      const mode = localStorage?.getItem("mui-theme-mode");
+      return mode == "dark" ? "dark" : "light";
+    }
+  };
+  const setThemeMode = (value: PaletteMode): void => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("mui-theme-mode", value);
+    }
+  };
+
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   const [mode, setMode] = React.useState<PaletteMode>(
-    prefersDarkMode ? "dark" : "light"
+    getThemeMode() || prefersDarkMode ? "dark" : "light"
   );
 
   // Update the theme only if the mode changes
@@ -30,14 +41,15 @@ export default function ThemeRegistry({
     () => ({
       // The dark mode switch would invoke this method
       toggleColorMode: () => {
-        setMode((prevMode: PaletteMode) =>
-          prevMode === "light" ? "dark" : "light"
-        );
+        setMode((prevMode: PaletteMode) => {
+          const mode = prevMode === "light" ? "dark" : "light";
+          setThemeMode(mode);
+          return mode;
+        });
       },
       mode,
-      theme,
     }),
-    [mode, theme]
+    [mode]
   );
 
   return (

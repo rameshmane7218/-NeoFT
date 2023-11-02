@@ -1,4 +1,5 @@
 "use client";
+import * as React from "react";
 import { styled } from "@mui/material";
 import MaterialUIButton, { ButtonProps } from "@mui/material/Button";
 import { designSystem } from "../ThemeRegistry/design-system";
@@ -68,7 +69,10 @@ const ColorButton = styled(MaterialUIButton)<ButtonProps>(({
     default: {
       return {
         boxShadow: "none",
-        color: designSystem.colors.primary.main,
+        color:
+          theme.palette.mode == "light"
+            ? designSystem.colors.primary.main
+            : designSystem.colors.white,
         backgroundColor:
           theme.palette.mode == "light"
             ? designSystem.colors.primary.light
@@ -77,7 +81,10 @@ const ColorButton = styled(MaterialUIButton)<ButtonProps>(({
         padding: "12px 31px",
         "&:hover": {
           boxShadow: "none",
-          color: "#ffffff",
+          color:
+            theme.palette.mode == "light"
+              ? designSystem.colors.white
+              : designSystem.colors.primary.main,
           backgroundColor:
             theme.palette.mode == "light"
               ? designSystem.colors.primary.main
@@ -85,7 +92,10 @@ const ColorButton = styled(MaterialUIButton)<ButtonProps>(({
         },
         "&:active": {
           boxShadow: "none",
-          color: "#ffffff",
+          color:
+            theme.palette.mode == "light"
+              ? designSystem.colors.white
+              : designSystem.colors.primary.main,
           backgroundColor: designSystem.colors.primary.main,
         },
       };

@@ -1,6 +1,6 @@
 "use client";
-import { Box, Container, IconButton, Stack, Typography } from "@mui/material";
-import { ReactNode, useContext } from "react";
+import { Box, Container, Stack } from "@mui/material";
+import { useContext } from "react";
 import { Logo } from "../Logo";
 import Link from "next/link";
 import { designSystem } from "../ThemeRegistry/design-system";
@@ -9,12 +9,9 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
 import { ColorModeContext } from "../ThemeRegistry/ThemeRegistry";
 import { usePathname } from "next/navigation";
-interface Props {
-  children?: ReactNode;
-}
 
 export const Header = () => {
-  const { mode, theme, toggleColorMode } = useContext(ColorModeContext);
+  const { mode, toggleColorMode } = useContext(ColorModeContext);
   const pathname = usePathname();
   const links = [
     {
