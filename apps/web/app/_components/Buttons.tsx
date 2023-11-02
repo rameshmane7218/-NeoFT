@@ -1,7 +1,6 @@
 "use client";
 import { Box, Button, Container, Stack, Typography, Divider } from "ui";
-import logo from "./logo.png";
-export default function Buttons() {
+export default function Buttons(): JSX.Element {
   return (
     <Container maxWidth={"xl"} sx={{ paddingTop: "20px" }}>
       <Stack

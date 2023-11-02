@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { type Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
@@ -6,6 +6,6 @@ export const metadata: Metadata = {
     "Privacy Policy | A highly-curated platform for creating, collecting unique NFTs",
 };
 
-export default function privacy() {
+export default function privacy(): JSX.Element {
   return <div>Privacy Policy</div>;
 }
