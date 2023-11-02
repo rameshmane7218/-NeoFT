@@ -1,13 +1,7 @@
 "use client";
 import * as React from "react";
-import {
-  Box,
-  Button,
-  Container,
-  Stack,
-  Typography,
-  Divider,
-} from "@mui/material";
+import { Box, Container, Stack, Typography, Divider } from "@mui/material";
+import { Button } from "../Button";
 export default function SampleSection(): JSX.Element {
   return (
     <Container maxWidth={"xl"} sx={{ paddingTop: "20px" }}>

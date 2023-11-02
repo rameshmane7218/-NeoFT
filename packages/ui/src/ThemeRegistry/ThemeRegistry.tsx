@@ -17,22 +17,22 @@ export default function ThemeRegistry({
 }: {
   children: React.ReactNode;
 }) {
-  const getThemeMode = (): PaletteMode | undefined => {
-    if (typeof window !== "undefined") {
-      const mode = localStorage?.getItem("mui-theme-mode");
-      return mode == "dark" ? "dark" : "light";
-    }
-  };
-  const setThemeMode = (value: PaletteMode): void => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("mui-theme-mode", value);
-    }
-  };
+  // const getThemeMode = (): PaletteMode | undefined => {
+  //   if (typeof window !== "undefined") {
+  //     const mode = localStorage?.getItem("mui-theme-mode");
+  //     return mode == "dark" ? "dark" : "light";
+  //   }
+  // };
+  // const setThemeMode = (value: PaletteMode): void => {
+  //   if (typeof window !== "undefined") {
+  //     localStorage.setItem("mui-theme-mode", value);
+  //   }
+  // };
 
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   const [mode, setMode] = React.useState<PaletteMode>(
-    getThemeMode() || prefersDarkMode ? "dark" : "light"
+    prefersDarkMode ? "dark" : "light"
   );
 
   // Update the theme only if the mode changes
@@ -45,19 +45,19 @@ export default function ThemeRegistry({
           const mode = prevMode === "light" ? "dark" : "light";
           return mode;
         });
+        // setThemeMode(mode);
       },
-      mode,
     }),
     [mode]
   );
 
-  React.useEffect(() => {
-    setThemeMode(mode);
-  }, [mode]);
+  // React.useEffect(() => {
+  //   setThemeMode(mode);
+  // }, [mode]);
 
   return (
     <NextAppDirEmotionCacheProvider options={{ key: "mui" }}>
-      <ColorModeContext.Provider value={colorMode}>
+      <ColorModeContext.Provider value={{ ...colorMode, mode: mode }}>
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />

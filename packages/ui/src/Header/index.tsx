@@ -31,7 +31,7 @@ export const Header = () => {
       href: "#",
     },
   ];
-  console.log("pathname", pathname);
+  console.log("pathname", mode);
   return (
     <Box
       component={"header"}
