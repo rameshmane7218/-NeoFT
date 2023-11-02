@@ -5,3 +5,4 @@ export * from "./Logo/index";
 export * from "./Footer/index";
 export * from "./Header/index";
 export * from "./ThemeRegistry";
+export * from "./components/SampleSection";

@@ -1,9 +1,9 @@
-import Buttons from "./_components/buttons";
+import SampleSection from "ui/src/components/SampleSection";
 
 export default function Page(): JSX.Element {
   return (
     <main>
-      <Buttons />
+      <SampleSection />
     </main>
   );
 }
